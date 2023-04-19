@@ -7,7 +7,7 @@ TerminalGameMode::TerminalGameMode()
 
 void TerminalGameMode::PopulateWordVector()
 {
-	WordVector = { "Send", "Sing", "Soft", "Soap", "Stop" };
+	WordVector = { "Send", "Sing", "Soft", "Song", "Snag" };
 }
 
 void TerminalGameMode::PrintWordVector()
