@@ -28,6 +28,10 @@ public:
 
     bool WordGuessedCorrectly = false;
 
+    int ChancesToGuess{3};
+
+    bool OutofGuesses = false;
+
     int CoreLoopSelectionVariable{};
 
     int NumberofMatchingLetters{};
@@ -54,6 +58,8 @@ public:
     void CheckIfWordGuessCorrectly();
 
     void PrintSelectedWord();
+
+    void CheckIfAnyMoreChances();
 
     //Error Checking Functions
     void CheckGuessIsWithinVectorSize();

@@ -27,6 +27,7 @@ void PlayModeBaseClass::BeginPlayMenu()
 
 		if (MenuSelectionInput == 1)
 		{
+			//Delcares the Difficulty and Size of Word
 			DifficultySelectionInt = 4;
 			std::unique_ptr<TerminalGameMode> TerminalGamePTR = std::make_unique<TerminalGameMode>();
 			TerminalGamePTR->GenerateTerminalGameSetup(DifficultySelectionInt);

@@ -57,12 +57,15 @@ void TerminalGameMode::CoreGameLoop()
 		printf("Select a number next to the corresponding word to make a guess.\n");
 		printf("Number of matching letters: %d\n", NumberofMatchingLetters);
 		PrintWordVector();
-		printf("\n");
+		printf("**********\n");
+		printf("Guesses Left: %d\n", ChancesToGuess);
+		printf("**********\n");
 		std::cin >> CoreLoopSelectionVariable;
+		
 
 		CheckGuessIsWithinVectorSize();
 
-	} while (WordGuessedCorrectly != true);
+	} while (WordGuessedCorrectly != true && OutofGuesses != true);
 }
 
 void TerminalGameMode::GenerateArrayForGuess()
@@ -103,6 +106,8 @@ void TerminalGameMode::CheckIfWordGuessCorrectly()
 	}
 	else
 	{
+		ChancesToGuess--;
+		CheckIfAnyMoreChances();
 		printf("Your guess was incorrect! Try again!\n");
 	}
 }
@@ -116,6 +121,19 @@ void TerminalGameMode::CheckGuessIsWithinVectorSize()
 	else
 	{
 		CheckWordGuess();
+	}
+}
+
+void TerminalGameMode::CheckIfAnyMoreChances()
+{
+	if (ChancesToGuess != 0)
+	{
+		return;
+	}
+	else
+	{
+		printf("You have run out of chances, please try again!\n");
+		OutofGuesses = true;
 	}
 }
 
