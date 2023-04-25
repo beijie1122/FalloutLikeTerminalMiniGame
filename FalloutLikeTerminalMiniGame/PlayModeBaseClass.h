@@ -19,6 +19,10 @@ public:
 
 	void BeginPlayMenu();
 
+	void GenerateAndBeginTerminalGame();
+
+	int CheckInputValidation(int &MenuSelectionInput);
+
 	~PlayModeBaseClass();
 
 

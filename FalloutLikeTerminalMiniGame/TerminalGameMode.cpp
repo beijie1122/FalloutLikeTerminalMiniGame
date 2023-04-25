@@ -1,4 +1,5 @@
 #include "TerminalGameMode.h"
+#include <random>
 
 TerminalGameMode::TerminalGameMode()
 {
@@ -9,11 +10,23 @@ void TerminalGameMode::PopulateWordVector(int PassedDifficultyVariable)
 {
 	if (PassedDifficultyVariable == 4)
 	{
-		WordVector = { "Send", "Sing", "Soft", "Song", "Snag" };
+		WordVector = { "Send", "Sing", "Soft", "Song", "Snag"};
 	}
 	else if (PassedDifficultyVariable == 5)
 	{
-		WordVector = { "Lunch", "Laugh", "Laugg", "Lumpy", "Larry" };
+		WordVector = { "Lunch", "Laugh", "Lacky", "Lumpy", "Larry" };
+	}
+	else if (PassedDifficultyVariable == 6)
+	{
+		WordVector = { "Bubble", "Bumble", "Bonbon", "Babbler", "Befall" };
+	}
+	else if (PassedDifficultyVariable == 7)
+	{
+		WordVector = { "Concert", "Company", "Cabinet", "Corrupt", "Courage" };
+	}
+	else if (PassedDifficultyVariable == 8)
+	{
+		WordVector = { "Fantastic", "Fanciful", "Fulfilled", "Fearsome", "Fruitful" };
 	}
 	
 }
@@ -28,8 +41,10 @@ void TerminalGameMode::PrintWordVector()
 
 void TerminalGameMode::WordForGuessRandomSelection()
 {
-	//Place Randomizer Here
-	WordSelectionRandomVariable = 1;
+	srand((unsigned int)time(NULL));
+	WordSelectionRandomVariable = rand() % WordVector.size() + 0;
+
+	std::cout << WordSelectionRandomVariable << "\n";
 
 	SelectedWordFromWordVector = WordVector.at(WordSelectionRandomVariable);
 }
@@ -73,6 +88,7 @@ void TerminalGameMode::CoreGameLoop(int PassedDifficultyVariable)
 		printf("**********\n");
 		std::cin >> CoreLoopSelectionVariable;
 		
+		CheckInputValidation(CoreLoopSelectionVariable);
 
 		CheckGuessIsWithinVectorSize(PassedDifficultyVariable);
 
@@ -146,6 +162,25 @@ void TerminalGameMode::CheckIfAnyMoreChances()
 		printf("You have run out of chances, please try again!\n");
 		OutofGuesses = true;
 	}
+}
+
+int TerminalGameMode::CheckInputValidation(int& CoreLoopSelectionVariable)
+{
+	while (1)
+	{
+		if (std::cin.fail())
+		{
+			std::cin.clear();
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			printf("Please enter a valid input!\n");
+			std::cin >> CoreLoopSelectionVariable;
+		}
+		else
+		{
+			break;
+		}
+	}
+	return CoreLoopSelectionVariable;
 }
 
 TerminalGameMode::~TerminalGameMode()

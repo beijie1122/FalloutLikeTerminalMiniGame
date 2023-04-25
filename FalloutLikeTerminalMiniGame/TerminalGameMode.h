@@ -64,6 +64,8 @@ public:
     //Error Checking Functions
     void CheckGuessIsWithinVectorSize(int PassedDifficultyVariable);
 
+    int CheckInputValidation(int& CoreLoopSelectionVariable);
+
 
 
 };
