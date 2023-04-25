@@ -22,9 +22,9 @@ public:
 
     std::string GuessWordFromWordVector{};
 
-    char SelectedWordArray[4];
+    char SelectedWordArray[10];
 
-    char CheckWordArray[4];
+    char CheckWordArray[10];
 
     bool WordGuessedCorrectly = false;
 
@@ -39,7 +39,7 @@ public:
     int DifficultyVaraible{};
 
     //Functions
-    void PopulateWordVector();
+    void PopulateWordVector(int PassedDifficultyVariable);
 
     void PrintWordVector();
 
@@ -51,18 +51,18 @@ public:
 
     void GenerateTerminalGameSetup(int PassedDifficultyVariable);
 
-    void CoreGameLoop();
+    void CoreGameLoop(int PassedDifficultyVariable);
 
-    void CheckWordGuess();
+    void CheckWordGuess(int PassedDifficultyVariable);
 
-    void CheckIfWordGuessCorrectly();
+    void CheckIfWordGuessCorrectly(int PassedDifficultyVariable);
 
     void PrintSelectedWord();
 
     void CheckIfAnyMoreChances();
 
     //Error Checking Functions
-    void CheckGuessIsWithinVectorSize();
+    void CheckGuessIsWithinVectorSize(int PassedDifficultyVariable);
 
 
 

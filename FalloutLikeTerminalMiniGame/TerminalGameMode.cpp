@@ -5,9 +5,17 @@ TerminalGameMode::TerminalGameMode()
 
 }
 
-void TerminalGameMode::PopulateWordVector()
+void TerminalGameMode::PopulateWordVector(int PassedDifficultyVariable)
 {
-	WordVector = { "Send", "Sing", "Soft", "Song", "Snag" };
+	if (PassedDifficultyVariable == 4)
+	{
+		WordVector = { "Send", "Sing", "Soft", "Song", "Snag" };
+	}
+	else if (PassedDifficultyVariable == 5)
+	{
+		WordVector = { "Lunch", "Laugh", "Laugg", "Lumpy", "Larry" };
+	}
+	
 }
 
 void TerminalGameMode::PrintWordVector()
@@ -20,6 +28,7 @@ void TerminalGameMode::PrintWordVector()
 
 void TerminalGameMode::WordForGuessRandomSelection()
 {
+	//Place Randomizer Here
 	WordSelectionRandomVariable = 1;
 
 	SelectedWordFromWordVector = WordVector.at(WordSelectionRandomVariable);
@@ -35,14 +44,16 @@ void TerminalGameMode::GenerateArrayForGuessingSelectedWord()
 
 void TerminalGameMode::GenerateTerminalGameSetup(int PassedDifficultyVariable)
 {
-	PopulateWordVector();
+	//std::cout << "Difficulty Selected: " << PassedDifficultyVariable << "\n";
+	PopulateWordVector(PassedDifficultyVariable);
 	WordForGuessRandomSelection();
 	GenerateArrayForGuessingSelectedWord();
-	CoreGameLoop();
+	CoreGameLoop(PassedDifficultyVariable);
 }
 
 void TerminalGameMode::PrintSelectedWord()
 {
+	//Edit for when we decide on Array Size
 	for (size_t i = 0; i < 4; i++)
 	{
 		std::cout << SelectedWordArray[i] << " ";
@@ -50,7 +61,7 @@ void TerminalGameMode::PrintSelectedWord()
 	printf("\n");
 }
 
-void TerminalGameMode::CoreGameLoop()
+void TerminalGameMode::CoreGameLoop(int PassedDifficultyVariable)
 {
 	do
 	{
@@ -63,7 +74,7 @@ void TerminalGameMode::CoreGameLoop()
 		std::cin >> CoreLoopSelectionVariable;
 		
 
-		CheckGuessIsWithinVectorSize();
+		CheckGuessIsWithinVectorSize(PassedDifficultyVariable);
 
 	} while (WordGuessedCorrectly != true && OutofGuesses != true);
 }
@@ -78,7 +89,7 @@ void TerminalGameMode::GenerateArrayForGuess()
 	}
 }
 
-void TerminalGameMode::CheckWordGuess()
+void TerminalGameMode::CheckWordGuess(int PassedDifficultyVariable)
 {
 	std::cout << "You Guessed: " << WordVector.at(CoreLoopSelectionVariable) << std::endl;
 
@@ -86,20 +97,20 @@ void TerminalGameMode::CheckWordGuess()
 
 	GenerateArrayForGuess();
 
-	for (size_t j = 0; j < 4; j++)
+	for (size_t j = 0; j < PassedDifficultyVariable; j++)
 	{
 		if (SelectedWordArray[j] == CheckWordArray[j])
 		{
 			NumberofMatchingLetters = NumberofMatchingLetters + 1;
 		}
 	}
-	CheckIfWordGuessCorrectly();
+	CheckIfWordGuessCorrectly(PassedDifficultyVariable);
 
 }
 
-void TerminalGameMode::CheckIfWordGuessCorrectly()
+void TerminalGameMode::CheckIfWordGuessCorrectly(int PassedDifficultyVariable)
 {
-	if (NumberofMatchingLetters == 4)
+	if (NumberofMatchingLetters == PassedDifficultyVariable)
 	{
 		WordGuessedCorrectly = true;
 		printf("You guess the word correctly!\n");
@@ -112,7 +123,7 @@ void TerminalGameMode::CheckIfWordGuessCorrectly()
 	}
 }
 
-void TerminalGameMode::CheckGuessIsWithinVectorSize()
+void TerminalGameMode::CheckGuessIsWithinVectorSize(int PassedDifficultyVariable)
 {
 	if (CoreLoopSelectionVariable >= WordVector.size())
 	{
@@ -120,7 +131,7 @@ void TerminalGameMode::CheckGuessIsWithinVectorSize()
 	}
 	else
 	{
-		CheckWordGuess();
+		CheckWordGuess(PassedDifficultyVariable);
 	}
 }
 

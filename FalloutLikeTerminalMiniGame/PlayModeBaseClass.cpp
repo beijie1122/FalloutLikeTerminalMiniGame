@@ -22,6 +22,7 @@ void PlayModeBaseClass::BeginPlayMenu()
 	do
 	{
 		printf("Press 1 to start a very easy Terminal Minigame: \n");
+		printf("Press 2 to start an easy Terminal Minigame: \n");
 		printf("Press 9 to exit the game: \n");
 		std::cin >> MenuSelectionInput;
 
@@ -32,6 +33,12 @@ void PlayModeBaseClass::BeginPlayMenu()
 			std::unique_ptr<TerminalGameMode> TerminalGamePTR = std::make_unique<TerminalGameMode>();
 			TerminalGamePTR->GenerateTerminalGameSetup(DifficultySelectionInt);
 			//TerminalGamePTR->PrintSelectedWord();
+		}
+		else if (MenuSelectionInput == 2)
+		{
+			DifficultySelectionInt = 5;
+			std::unique_ptr<TerminalGameMode> TerminalGamePTR = std::make_unique<TerminalGameMode>();
+			TerminalGamePTR->GenerateTerminalGameSetup(DifficultySelectionInt);
 		}
 		else
 		{
