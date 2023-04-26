@@ -22,6 +22,22 @@ public:
 
     std::string GuessWordFromWordVector{};
 
+    //IfStream-realted Strings
+
+    std::string InStreamString{};
+
+    std::string PullerSelectionString{};
+
+    std::string InStreamVeryEasyPuller{ "VeryEasyWordBank.txt" };
+
+    std::string InStreamEasyPuller{ "EasyWordBank.txt" };
+
+    std::string InStreamMediumPuller{ "MediumWordBank.txt" };
+
+    std::string InStreamHardPuller{ "HardWordBank.txt" };
+
+    std::string InStreamVeryHardPuller{ "VeryHardWordBank.txt" };
+
     char SelectedWordArray[10];
 
     char CheckWordArray[10];
@@ -66,6 +82,9 @@ public:
 
     int CheckInputValidation(int& CoreLoopSelectionVariable);
 
+    //IfStream-Related Functions 
+
+    void IfStreamExtractionFunction();
 
 
 };

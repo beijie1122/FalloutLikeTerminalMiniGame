@@ -33,4 +33,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="VeryEasyWordBank.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="EasyWordBank.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="MediumWordBank.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="HardWordBank.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="VeryHardWordBank.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+  </ItemGroup>
 </Project>

@@ -1,8 +1,34 @@
 #include "TerminalGameMode.h"
 #include <random>
+#include <fstream>
 
 TerminalGameMode::TerminalGameMode()
 {
+
+}
+
+void TerminalGameMode::IfStreamExtractionFunction()
+{
+	//Sets up the IfStream
+	std::ifstream in_file;
+
+	in_file.open(PullerSelectionString);
+	if (!in_file)
+	{
+		printf("Failed to open the file\n");
+		return;
+	}
+	else
+	{
+		if (in_file.is_open())
+		{
+			while (std::getline(in_file, InStreamString))
+			{
+				WordVector.emplace_back(InStreamString);
+			}
+		}
+	}
+	in_file.close();
 
 }
 
@@ -10,23 +36,28 @@ void TerminalGameMode::PopulateWordVector(int PassedDifficultyVariable)
 {
 	if (PassedDifficultyVariable == 4)
 	{
-		WordVector = { "Send", "Sing", "Soft", "Song", "Snag"};
+		PullerSelectionString = InStreamVeryEasyPuller;
+		IfStreamExtractionFunction();
 	}
 	else if (PassedDifficultyVariable == 5)
 	{
-		WordVector = { "Lunch", "Laugh", "Lacky", "Lumpy", "Larry" };
+		PullerSelectionString = InStreamEasyPuller;
+		IfStreamExtractionFunction();
 	}
 	else if (PassedDifficultyVariable == 6)
 	{
-		WordVector = { "Bubble", "Bumble", "Bonbon", "Babbler", "Befall" };
+		PullerSelectionString = InStreamMediumPuller;
+		IfStreamExtractionFunction();
 	}
 	else if (PassedDifficultyVariable == 7)
 	{
-		WordVector = { "Concert", "Company", "Cabinet", "Corrupt", "Courage" };
+		PullerSelectionString = InStreamHardPuller;
+		IfStreamExtractionFunction();
 	}
 	else if (PassedDifficultyVariable == 8)
 	{
-		WordVector = { "Fantastic", "Fanciful", "Fulfilled", "Fearsome", "Fruitful" };
+		PullerSelectionString = InStreamVeryHardPuller;
+		IfStreamExtractionFunction();
 	}
 	
 }
