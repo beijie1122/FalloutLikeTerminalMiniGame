@@ -24,12 +24,24 @@ void TerminalGameMode::IfStreamExtractionFunction()
 		{
 			while (std::getline(in_file, InStreamString))
 			{
-				WordVector.emplace_back(InStreamString);
+				FStreamWordVector.emplace_back(InStreamString);
 			}
 		}
 	}
 	in_file.close();
 
+	SelectRandomWordsFromFStreamVectoWordVec();
+}
+
+void TerminalGameMode::SelectRandomWordsFromFStreamVectoWordVec()
+{
+	for (size_t i = 0; i < 6; i++)
+	{
+		FStreamWordVectorRandVariable = rand() % FStreamWordVector.size() + 0;
+		WordVector.push_back(FStreamWordVector.at(FStreamWordVectorRandVariable));
+		FStreamWordVector.emplace_back(FStreamWordVector.at(FStreamWordVectorRandVariable));
+		FStreamWordVector.pop_back();
+	}
 }
 
 void TerminalGameMode::PopulateWordVector(int PassedDifficultyVariable)

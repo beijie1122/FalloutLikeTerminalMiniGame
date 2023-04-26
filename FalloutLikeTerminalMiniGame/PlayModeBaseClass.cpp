@@ -1,4 +1,5 @@
 #include "PlayModeBaseClass.h"
+#include <fstream>
 
 
 PlayModeBaseClass::PlayModeBaseClass()
@@ -13,11 +14,12 @@ void PlayModeBaseClass::BeginPlay()
 
 void PlayModeBaseClass::BeginPlayMenu()
 {
-	printf("*****************************\n");
-	printf("Welcome to the Terminal Game!\n");
-	printf("*****************************\n\n");
+	FStreamExtractionFunction();
 
-	printf("Press one of the following to begin a Terminal Minigame: \n");
+	for (size_t i = 0; i < FStreamStringVector.size(); i++)
+	{
+		std::cout << FStreamStringVector.at(i) << "\n";
+	}
 	
 	do
 	{
@@ -61,7 +63,7 @@ void PlayModeBaseClass::BeginPlayMenu()
 		}
 		else
 		{
-			printf("Please select a valid entry.\n");
+			printf("Please select a valid entry!\n");
 		}
 
 	} while (MenuSelectionInput != 9);
@@ -72,6 +74,29 @@ void PlayModeBaseClass::GenerateAndBeginTerminalGame()
 {
 	std::unique_ptr<TerminalGameMode> TerminalGamePTR = std::make_unique<TerminalGameMode>();
 	TerminalGamePTR->GenerateTerminalGameSetup(DifficultySelectionInt);
+}
+
+void PlayModeBaseClass::FStreamExtractionFunction()
+{
+	std::ifstream in_file;
+	in_file.open("PlayModeBaseClassMenuTexts.txt");
+	if (!in_file)
+	{
+		printf("Error opening the file!");
+		return;
+	}
+	else
+	{
+		if (in_file.is_open())
+		{
+			while (std::getline(in_file, FStreamInputString))
+
+			{
+				FStreamStringVector.emplace_back(FStreamInputString);
+			}
+		}
+	}
+	in_file.close();
 }
 
 int PlayModeBaseClass::CheckInputValidation(int &MenuSelectionInput)

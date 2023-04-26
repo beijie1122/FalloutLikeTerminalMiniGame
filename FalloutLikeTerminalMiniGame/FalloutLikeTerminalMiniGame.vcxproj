@@ -151,6 +151,7 @@
     <Text Include="EasyWordBank.txt" />
     <Text Include="HardWordBank.txt" />
     <Text Include="MediumWordBank.txt" />
+    <Text Include="PlayModeBaseClassMenuTexts.txt" />
     <Text Include="VeryEasyWordBank.txt" />
     <Text Include="VeryHardWordBank.txt" />
   </ItemGroup>

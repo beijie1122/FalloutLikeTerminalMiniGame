@@ -13,6 +13,12 @@ public:
 
 	int DifficultySelectionInt{};
 
+	//FStream-related Variables
+
+	std::string FStreamInputString{};
+
+	std::vector<std::string>FStreamStringVector{};
+
 	PlayModeBaseClass();
 
 	void BeginPlay();
@@ -22,6 +28,8 @@ public:
 	void GenerateAndBeginTerminalGame();
 
 	int CheckInputValidation(int &MenuSelectionInput);
+
+	void FStreamExtractionFunction();
 
 	~PlayModeBaseClass();
 

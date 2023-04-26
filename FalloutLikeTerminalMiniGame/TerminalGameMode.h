@@ -16,6 +16,10 @@ public:
     //Variables
     std::vector<std::string> WordVector{};
 
+    std::vector<std::string> FStreamWordVector{};
+
+    int FStreamWordVectorRandVariable{};
+
     int WordSelectionRandomVariable{};
 
     std::string SelectedWordFromWordVector{};
@@ -85,6 +89,8 @@ public:
     //IfStream-Related Functions 
 
     void IfStreamExtractionFunction();
+
+    void SelectRandomWordsFromFStreamVectoWordVec();
 
 
 };

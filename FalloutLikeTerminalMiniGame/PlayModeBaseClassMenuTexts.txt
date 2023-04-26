@@ -1,0 +1,5 @@
+******************************* 
+ Welcome to the Terminal Game! 
+******************************* 
+
+Press one of the following to begin a Terminal Minigame:
