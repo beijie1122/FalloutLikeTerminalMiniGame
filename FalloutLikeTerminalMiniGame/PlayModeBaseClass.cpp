@@ -35,6 +35,8 @@ void PlayModeBaseClass::BeginPlayMenu()
 		//printf("Press 9 to exit the game: \n");
 		std::cin >> MenuSelectionInput;
 
+		system("CLS");
+
 		CheckInputValidation(MenuSelectionInput);
 
 		if (MenuSelectionInput == 1)

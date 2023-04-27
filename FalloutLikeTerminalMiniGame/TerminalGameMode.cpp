@@ -1,11 +1,12 @@
 #include "TerminalGameMode.h"
 #include <random>
 #include <fstream>
-#include <iterator>
+#include <stdlib.h>
+ 
 
 TerminalGameMode::TerminalGameMode()
 {
-
+	
 }
 
 void TerminalGameMode::IfStreamExtractionFunction()
@@ -124,12 +125,14 @@ void TerminalGameMode::CoreGameLoop(int PassedDifficultyVariable)
 	do
 	{
 		printf("Select a number next to the corresponding word to make a guess.\n");
+		std::cout << "Last word selected: " << WordGuess << "\n";
 		printf("Number of matching letters: %d\n", NumberofMatchingLetters);
 		PrintWordVector();
 		printf("**********\n");
 		printf("Guesses Left: %d\n", ChancesToGuess);
 		printf("**********\n");
 		std::cin >> CoreLoopSelectionVariable;
+		system("CLS");
 		
 		CheckInputValidation(CoreLoopSelectionVariable);
 
@@ -152,6 +155,8 @@ void TerminalGameMode::CheckWordGuess(int PassedDifficultyVariable)
 {
 	std::cout << "You Guessed: " << WordVector.at(CoreLoopSelectionVariable) << std::endl;
 
+	WordGuess = WordVector.at(CoreLoopSelectionVariable);
+
 	NumberofMatchingLetters = 0;
 
 	GenerateArrayForGuess();
@@ -172,14 +177,31 @@ void TerminalGameMode::CheckIfWordGuessCorrectly(int PassedDifficultyVariable)
 	if (NumberofMatchingLetters == PassedDifficultyVariable)
 	{
 		WordGuessedCorrectly = true;
-		printf("You guess the word correctly!\n");
+		printf("************************************\n");
+		printf("You guess is correct!\n");
+		printf("************************************\n");
+		printf("Please press any number to continue: ");
+		std::cin >> CoreLoopSelectionVariable;
+		CheckInputValidation(CoreLoopSelectionVariable);
+		system("CLS");
 	}
 	else
 	{
 		ChancesToGuess--;
 		CheckIfAnyMoreChances();
+		printf("************************************\n");
 		printf("Your guess was incorrect! Try again!\n");
+		printf("************************************\n");
+		printf("Please press any number to continue: ");
+		std::cin >> CoreLoopSelectionVariable;
+		CheckInputValidation(CoreLoopSelectionVariable);
+		system("CLS");
 	}
+}
+
+void TerminalGameMode::PrintLastSelectedWord()
+{
+
 }
 
 void TerminalGameMode::CheckGuessIsWithinVectorSize(int PassedDifficultyVariable)

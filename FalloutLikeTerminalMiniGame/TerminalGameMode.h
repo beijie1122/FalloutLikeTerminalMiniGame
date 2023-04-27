@@ -26,6 +26,8 @@ public:
 
     std::string GuessWordFromWordVector{};
 
+    std::string WordGuess{};
+
     //IfStream-realted Strings
 
     std::string InStreamString{};
@@ -80,6 +82,8 @@ public:
     void PrintSelectedWord();
 
     void CheckIfAnyMoreChances();
+
+    void PrintLastSelectedWord();
 
     //Error Checking Functions
     void CheckGuessIsWithinVectorSize(int PassedDifficultyVariable);
