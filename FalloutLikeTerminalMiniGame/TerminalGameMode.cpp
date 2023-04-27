@@ -1,6 +1,7 @@
 #include "TerminalGameMode.h"
 #include <random>
 #include <fstream>
+#include <iterator>
 
 TerminalGameMode::TerminalGameMode()
 {
@@ -39,8 +40,7 @@ void TerminalGameMode::SelectRandomWordsFromFStreamVectoWordVec()
 	{
 		FStreamWordVectorRandVariable = rand() % FStreamWordVector.size() + 0;
 		WordVector.push_back(FStreamWordVector.at(FStreamWordVectorRandVariable));
-		FStreamWordVector.emplace_back(FStreamWordVector.at(FStreamWordVectorRandVariable));
-		FStreamWordVector.pop_back();
+		FStreamWordVector.erase(std::remove(FStreamWordVector.begin(), FStreamWordVector.end(), FStreamWordVector.at(FStreamWordVectorRandVariable)));
 	}
 }
 
