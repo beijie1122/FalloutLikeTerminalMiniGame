@@ -1,0 +1,9 @@
+***********************************************************
+Press 1 to start a very easy difficulty Terminal Minigame:
+Press 2 to start an easy difficulty Terminal Minigame:
+Press 3 to start a Medium difficulty Terminal Minigame:
+Press 4 to start a Hard difficulty Terminal Minigame:
+Press 5 to start a Very Hard Terminal Minigame:
+***********************************************************
+Press 9 to exit the game: 
+***********************************************************

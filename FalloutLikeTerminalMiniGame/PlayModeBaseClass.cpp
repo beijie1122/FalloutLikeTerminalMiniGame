@@ -1,5 +1,6 @@
 #include "PlayModeBaseClass.h"
 #include <fstream>
+#include <stdlib.h>
 
 
 PlayModeBaseClass::PlayModeBaseClass()
@@ -14,23 +15,24 @@ void PlayModeBaseClass::BeginPlay()
 
 void PlayModeBaseClass::BeginPlayMenu()
 {
-	FStreamExtractionFunction();
+	FStreamExtractionFunction(MainMenuFStreamInput, MainMenuFStreamVector);
 
-	for (size_t i = 0; i < FStreamStringVector.size(); i++)
-	{
-		std::cout << FStreamStringVector.at(i) << "\n";
-	}
+	PrintVector(MainMenuFStreamVector);
+
+	FStreamExtractionFunction(DifficultySelectionFStreamInput, DifficultySelectionFStreamVector);
 	
 	do
 	{
-		printf("***********************************************************\n");
-		printf("Press 1 to start a very easy difficulty Terminal Minigame: \n");
-		printf("Press 2 to start an easy difficulty Terminal Minigame: \n");
-		printf("Press 3 to start a Medium difficulty Terminal Minigame: \n");
-		printf("Press 4 to start a Hard difficulty Terminal Minigame: \n");
-		printf("Press 5 to start a Very Hard Terminal Minigame: \n");
-		printf("***********************************************************\n");
-		printf("Press 9 to exit the game: \n");
+		PrintVector(DifficultySelectionFStreamVector);
+
+		//printf("***********************************************************\n");
+		//printf("Press 1 to start a very easy difficulty Terminal Minigame: \n");
+		//printf("Press 2 to start an easy difficulty Terminal Minigame: \n");
+		//printf("Press 3 to start a Medium difficulty Terminal Minigame: \n");
+		//printf("Press 4 to start a Hard difficulty Terminal Minigame: \n");
+		//printf("Press 5 to start a Very Hard Terminal Minigame: \n");
+		//printf("***********************************************************\n");
+		//printf("Press 9 to exit the game: \n");
 		std::cin >> MenuSelectionInput;
 
 		CheckInputValidation(MenuSelectionInput);
@@ -76,10 +78,10 @@ void PlayModeBaseClass::GenerateAndBeginTerminalGame()
 	TerminalGamePTR->GenerateTerminalGameSetup(DifficultySelectionInt);
 }
 
-void PlayModeBaseClass::FStreamExtractionFunction()
+void PlayModeBaseClass::FStreamExtractionFunction(std::string FStreamInput, std::vector<std::string> &FStreamStorageVector)
 {
 	std::ifstream in_file;
-	in_file.open("PlayModeBaseClassMenuTexts.txt");
+	in_file.open(FStreamInput);
 	if (!in_file)
 	{
 		printf("Error opening the file!");
@@ -92,11 +94,19 @@ void PlayModeBaseClass::FStreamExtractionFunction()
 			while (std::getline(in_file, FStreamInputString))
 
 			{
-				FStreamStringVector.emplace_back(FStreamInputString);
+				FStreamStorageVector.emplace_back(FStreamInputString);
 			}
 		}
 	}
 	in_file.close();
+}
+
+void PlayModeBaseClass::PrintVector(std::vector<std::string> FStreamStorageVector)
+{
+	for (size_t i = 0; i < FStreamStorageVector.size(); i++)
+	{
+		std::cout << FStreamStorageVector.at(i) << "\n";
+	}
 }
 
 int PlayModeBaseClass::CheckInputValidation(int &MenuSelectionInput)

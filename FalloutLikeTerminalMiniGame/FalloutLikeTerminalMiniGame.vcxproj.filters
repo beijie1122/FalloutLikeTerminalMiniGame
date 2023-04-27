@@ -52,5 +52,8 @@
     <Text Include="PlayModeBaseClassMenuTexts.txt">
       <Filter>Source Files</Filter>
     </Text>
+    <Text Include="DifficultySelectionMenuText.txt">
+      <Filter>Source Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

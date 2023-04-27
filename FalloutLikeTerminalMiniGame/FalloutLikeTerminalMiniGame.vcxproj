@@ -148,6 +148,7 @@
     <ClInclude Include="TerminalGameMode.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="DifficultySelectionMenuText.txt" />
     <Text Include="EasyWordBank.txt" />
     <Text Include="HardWordBank.txt" />
     <Text Include="MediumWordBank.txt" />
